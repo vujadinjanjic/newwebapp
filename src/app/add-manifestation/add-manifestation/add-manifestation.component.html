@@ -1,0 +1,126 @@
+<div>
+  <div style="margin-top: 10px; text-align: center">
+    <span class="sidetitle">Define new manifestation:</span>
+  </div>
+
+  <form [formGroup]="formGroup">
+    <div class="col" style="margin-top: 20px">
+      <span class="sidetitle" style="padding-right: 20px">Name:</span>
+      <mat-form-field style="width: 200px !important" appearance="outline">
+        <input
+          matInput
+          style="width: 100% !important"
+          id="name"
+          formControlName="name"
+          [ngClass]="
+            formGroup.controls['name'].invalid &&
+            formGroup.controls['name'].touched
+              ? 'is-invalid'
+              : ''
+          "
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col" style="margin-top: 20px">
+      <span class="sidetitle" style="padding-right: 20px">Type:</span>
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <select matNativeControl required formControlName="type">
+          <option value="Pozoriste">Pozoriste</option>
+          <option value="Festival">Festival</option>
+          <option value="Koncert">Koncert</option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="col" style="margin-top: 20px">
+      <span class="sidetitle" style="padding-right: 20px">Price:</span>
+      <mat-form-field style="width: 50px !important" appearance="outline">
+        <input
+          matInput
+          style="width: 100% !important"
+          id="price"
+          formControlName="price"
+          [ngClass]="
+            formGroup.controls['price'].invalid &&
+            formGroup.controls['price'].touched
+              ? 'is-invalid'
+              : ''
+          "
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-card style="height: 70px !important">
+        <mat-form-field style="width: 100% !important">
+          <mat-label>Event place</mat-label>
+          <mat-select formControlName="place">
+            <mat-option *ngFor="let place of places" [value]="place?.address">
+              {{ place.city }} ,{{ place.address }},{{ place.postNumber }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card>
+    </div>
+
+    <div class="col" style="margin-top: 20px">
+      <mat-card style="height: 70px !important">
+        <mat-form-field style="width: 100% !important">
+          <mat-label>Event date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [min]="startingMinDate"
+            formControlName="date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </mat-card>
+    </div>
+
+    
+
+    <div class="col" style="margin-top: 20px">
+      <span class="sidetitle" style="padding-right: 40px">Seats:</span>
+      <mat-form-field style="width: 50px !important" appearance="outline">
+        <input
+          matInput
+          style="width: 100% !important"
+          id="seats"
+          formControlName="seats"
+          [ngClass]="
+            formGroup.controls['seats'].invalid &&
+            formGroup.controls['seats'].touched
+              ? 'is-invalid'
+              : ''
+          "
+        />
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div>
+    <input
+      #fileInput
+      requiredstyle="display: none;"
+      type="file"
+      (change)="onFileSelected($event)"
+    />
+  </div>
+
+  <br />
+  <div>
+    {{ selectedFile?.name }}
+  </div>
+  <br />
+
+  <button mat-raised-button color="primary" (click)="AddManifestation()">
+    Add!
+  </button>
+</div>

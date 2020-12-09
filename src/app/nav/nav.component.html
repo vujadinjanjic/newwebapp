@@ -1,0 +1,80 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']">Home page</a>
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item active" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/manifestations']">Manifestations</a>
+    </li>
+    <li *ngIf="loggedIn()" class="nav-item active" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/tickets']">Tickets</a>
+    </li>
+    <li *ngIf="loggedIn()" class="nav-item">
+      <a class="nav-link" [routerLink]="['/editprofile']">Edit profile</a>
+    </li>
+    <li
+      *ngIf="authService.isAdmin()"
+      class="nav-item active"
+      routerLinkActive="active"
+    >
+      <a class="nav-link" [routerLink]="['/adminslist']">List of users</a>
+    </li>
+    <li
+      class="nav-item active"
+      routerLinkActive="active"
+      style="cursor: pointer"
+      *ngIf="authService.isSeller()"
+    >
+      <a class="nav-link" (click)="addManifestation()">Add manifestation</a>
+    </li>
+    <li
+    *ngIf="authService.isCustomer()"
+      class="nav-item active"
+      routerLinkActive="active"
+      style="cursor: pointer"
+    >
+      <a class="nav-link" [routerLink]="['/reservedTicketList']"
+        >Reserved ticket list</a
+      >
+    </li>
+    <li class="nav-item" *ngIf="loggedIn()" style="cursor: pointer">
+      <a class="nav-link" (click)="logout()">Logout</a>
+    </li>
+  </ul>
+
+  <li class="nav-item" *ngIf="loggedIn()">
+    <a class="nav-item">
+      Welcome {{ authService.decodedToken?.unique_name | titlecase }}
+    </a>
+  </li>
+
+  <form
+    *ngIf="!loggedIn()"
+    #loginForm="ngForm"
+    class="form-inline my-2 my-lg-0"
+    (ngSubmit)="login()"
+  >
+    <input
+      class="form-control mr-sm-2"
+      type="text"
+      name="username"
+      placeholder="Username"
+      required
+      [(ngModel)]="model.username"
+    />
+    <input
+      class="form-control mr-sm-2"
+      type="password"
+      name="password"
+      placeholder="Password"
+      required
+      [(ngModel)]="model.password"
+    />
+    <button
+      [disabled]="!loginForm.valid"
+      class="btn btn-success my-2 my-sm-0"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</nav>

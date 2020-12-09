@@ -1,0 +1,88 @@
+<div class="card mb-4" style="width: 50%; margin: auto; display: flex">
+  <div class="row" style="margin-top: 25px">
+    <div class="col" style="margin-left: 80px">
+      <span style="font-size: 20px; font-weight: bold; margin-left: 35px">{{
+        manifest.name
+      }}</span>
+    </div>
+  </div>
+  <br />
+  <hr style="margin-top: -20px" />
+
+  <div class="row" style="margin-left: 30px; margin-top: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Location:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ manifest.place.city }}, {{ manifest.place.address }},
+        {{ manifest.place.postNumber }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Status:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ manifest.status }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Date:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ manifest.eventDate | date:'medium' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Price:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ manifest.price }} $
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Seats number:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ manifest.seatsNumber }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Type:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ manifest.type }}
+      </span>
+    </div>
+    <div class="col" style="margin-left: 303px">
+      <button mat-raised-button color="primary" style="margin-right: 5px" (click)="viewManifestation()">
+      View manifestation
+      </button>
+      <button mat-raised-button *ngIf="authService.isSeller()" color="primary" style="margin-right: 5px" (click)="editManifestation()">
+        Izmeni manifestaciju
+        </button>
+      <button mat-raised-button *ngIf="authService.isAdmin()" (click)="DeleteManifestation(manifest.id)"  color="primary" style="margin-right: 5px; margin-top: 30px;">
+        Izbrisi manifestaciju
+       </button>
+       <button mat-raised-button *ngIf="authService.isAdmin() && manifest.status == 'NonActive'"  (click)="MakeItActive(manifest.id)"  color="primary" style="margin-right: 5px; margin-top: 30px;">
+        Napravi aktivnom
+       </button>
+    </div>
+  </div>
+
+  <div class="col">
+    <span><img class="img" src="{{ manifest.image }}" alt="" /></span>
+  </div>
+
+  <br />
+
+  <div></div>
+</div>

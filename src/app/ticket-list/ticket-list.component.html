@@ -1,0 +1,112 @@
+<div class="container mt-4">
+  <div style="text-align: center; margin-bottom: 50px">
+    <mat-card class="mat-card3">
+      <span class="sidetitle">Find by manifestation</span>
+      <br />
+      <div>
+        <input
+          matInput
+          class="example-margin"
+          [(ngModel)]="ticketParams.manifestationName"
+          color="primary"
+        />
+      </div>
+      <span class="sidetitle">Find by type</span>
+      <br />
+      <div>
+        <input
+          matInput
+          class="example-margin"
+          [(ngModel)]="ticketParams.type"
+          color="primary"
+        />
+      </div>
+
+      <span class="sidetitle">Find by status</span>
+      <br />
+      <div>
+        <input
+          matInput
+          class="example-margin"
+          [(ngModel)]="ticketParams.status"
+          color="primary"
+        />
+      </div>
+
+      <span class="sidetitle">Min Price : </span>
+      <br />
+
+      <div>
+        <mat-slider
+          style="width: 100% !important"
+          [(ngModel)]="ticketParams.minPrice"
+          class="example-margin"
+          [max]="400"
+          [min]="0"
+          [step]="3"
+          [thumbLabel]="true"
+          color="primary"
+        >
+        </mat-slider>
+        <span style="font-weight: bold">0</span>
+        <span style="font-weight: bold; float: right">400</span>
+      </div>
+
+      <div>
+        <hr />
+      </div>
+
+      <span class="sidetitle">Max Price : </span>
+
+      <br />
+
+      <div>
+        <mat-slider
+          style="width: 100% !important"
+          [(ngModel)]="ticketParams.maxPrice"
+          class="example-margin"
+          [max]="400"
+          [min]="ticketParams.minPrice"
+          [step]="5"
+          [thumbLabel]="true"
+          color="primary"
+        >
+        </mat-slider>
+        <span style="font-weight: bold">0</span>
+        <span style="font-weight: bold; float: right">400</span>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Starting date</mat-label>
+        <input matInput [matDatepicker]="picker" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div style="margin-top: 30px; display: inline-block; margin-left: 30px">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="loadTickets()"
+          style="margin-right: 20px"
+        >
+          Apply
+        </button>
+        <button mat-raised-button (click)="removeFilters()">
+          Remove filters
+        </button>
+      </div>
+    </mat-card>
+
+    <button mat-raised-button (click)="onNameSort()">
+      Manifestation name A-Z
+    </button>
+    <button mat-raised-button (click)="onPriceSort()">Price sort</button>
+    <button mat-raised-button (click)="onDateSort()">Dates sort</button>
+  </div>
+  <div *ngFor="let ticket of tickets">
+    <ng-container *ngIf="!ticket.isDeleted">
+      <app-ticket [ticket]="ticket"></app-ticket>
+    </ng-container>
+  </div>
+</div>

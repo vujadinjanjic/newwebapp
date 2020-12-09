@@ -1,0 +1,82 @@
+<div class="card mb-4" style="width: 50%; margin: auto; display: flex">
+  <div class="row" style="margin-top: 25px">
+    <div class="col" style="margin-left: 80px">
+      <span style="font-size: 20px">Ticket identificator:</span>
+      <span style="font-size: 20px; font-weight: bold; margin-left: 35px">{{
+        ticket.ticketIdentificator
+      }}</span>
+    </div>
+  </div>
+  <br />
+  <hr style="margin-top: -20px" />
+
+  <div class="row" style="margin-left: 30px; margin-top: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Manifestation:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ ticket.manifestation.name }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Status:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ ticket.status }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Date:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ ticket.eventDate | date: 'medium' }}
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Price:</span>
+      <span style="font-size: 20px; margin-left: 10px"
+        >{{ ticket.price }} $
+      </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col">
+      <span style="font-size: 20px; font-weight: bold">Type:</span>
+      <span style="font-size: 20px; margin-left: 10px">{{ ticket.type }} </span>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 30px">
+    <div class="col" style="margin-left: 303px">
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="authService.isCustomer()"
+        (click)="ReserveTicket()"
+        style="margin-right: 5px"
+      >
+        Reserve ticket
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="authService.isAdmin()"
+        (click)="DeleteTicket(ticket.ticketId)"
+        style="margin-right: 5px"
+      >
+        Delete ticket
+      </button>
+    </div>
+  </div>
+
+  <br />
+
+  <div></div>
+</div>

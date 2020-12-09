@@ -1,0 +1,127 @@
+<div class="container mt-2">
+  <div class="mat-elevation-z8 mat-card2">
+    <mat-card class="mat-card3">
+      <span class="sidetitle">Find by name</span>
+      <br />
+      <div>
+        <input
+          matInput
+          class="example-margin"
+          [(ngModel)]="manifestParams.name"
+          color="primary"
+        />
+      </div>
+
+      <span class="sidetitle">Find by location</span>
+      <br />
+      <div>
+        <input
+          matInput
+          class="example-margin"
+          [(ngModel)]="manifestParams.location"
+          color="primary"
+        />
+      </div>
+
+      <span class="sidetitle">Filter by type</span>
+      <br />
+      <div>
+        <input
+          matInput
+          class="example-margin"
+          [(ngModel)]="manifestParams.type"
+          color="primary"
+        />
+      </div>
+
+      <span class="sidetitle">Find by event place</span>
+      <br />
+      <div>
+        <input
+        matInput
+        class="example-margin"
+        [(ngModel)]="manifestParams.eventPlace"
+        color="primary"
+      />
+      </div>
+
+      <span class="sidetitle">Min Price : </span>
+      <br />
+
+      <div>
+        <mat-slider
+          style="width: 100% !important"
+          [(ngModel)]="manifestParams.minPrice"
+          class="example-margin"
+          [max]="400"
+          [min]="0"
+          [step]="3"
+          [thumbLabel]="true"
+          color="primary"
+        >
+        </mat-slider>
+        <span style="font-weight: bold">0</span>
+        <span style="font-weight: bold; float: right">400</span>
+      </div>
+
+      <div>
+        <hr />
+      </div>
+
+      <span class="sidetitle">Max Price : </span>
+
+      <br />
+
+      <div>
+        <mat-slider
+          style="width: 100% !important"
+          [(ngModel)]="manifestParams.maxPrice"
+          class="example-margin"
+          [max]="400"
+          [min]="manifestParams.minPrice"
+          [step]="5"
+          [thumbLabel]="true"
+          color="primary"
+        >
+        </mat-slider>
+        <span style="font-weight: bold">0</span>
+        <span style="font-weight: bold; float: right">400</span>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Starting date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="manifestParams.eventDate" [ngModelOptions]="{standalone: true}"/>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div style="margin-top: 30px; display: inline-block; margin-left: 30px">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="loadManifestations()"
+          style="margin-right: 20px"
+        >
+          Apply
+        </button>
+        <button mat-raised-button (click)="removeFilters()">
+          Remove filters
+        </button>
+      </div>
+      
+    </mat-card>
+
+    <div style="text-align: center; margin-bottom: 50px">
+      <button mat-raised-button (click)="onNameSort()">Name A-Z</button>
+      <button mat-raised-button (click)="onSortLocation()">Address A-Z</button>
+      <button mat-raised-button (click)="onDateSort()">Dates sort</button>
+      <button mat-raised-button (click)="onPriceSort()">Price sort</button>
+    </div>
+    <div *ngFor="let manifestation of manifestations">
+      <ng-container *ngIf="!manifestation.isDeleted">
+
+        <app-manifestation [manifest]="manifestation"></app-manifestation>
+      </ng-container>
+    </div>
+  </div>
+</div>

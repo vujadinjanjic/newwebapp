@@ -1,0 +1,75 @@
+<div>
+
+  <div style="margin-top: 10px; text-align: center;">
+    <span class="sidetitle">Edit manifestation data:</span>
+  </div>
+  <!-- <mat-card>Only admin has permission to define new flight data.</mat-card> -->
+  <hr>
+
+  <form [formGroup]="form">
+    <div class="col" style="margin-top: 20px;">
+      <span class="sidetitle" style="padding-right: 20px;">Name:</span>
+        <mat-form-field style="width: 300px !important;"  appearance="outline">
+          <input matInput  style="width: 100% !important;" id="name" formControlName="name"
+          [ngClass]="(form.controls['name'].invalid && form.controls['name'].touched) ? 'is-invalid' : ''">
+      </mat-form-field> 
+    </div>
+
+
+    <div class="col" style="margin-top: 20px;">
+      <span class="sidetitle" style="padding-right: 20px;">Seats number:</span>
+        <mat-form-field style="width: 50px !important;"  appearance="outline">
+          <input matInput  style="width: 100% !important;" id="seatsNumber" formControlName="seatsNumber"
+          [ngClass]="(form.controls['seatsNumber'].invalid && form.controls['seatsNumber'].touched) ? 'is-invalid' : ''">
+      </mat-form-field> 
+    </div>
+  
+    <label class="col" style="color: red;" 
+    *ngIf="form.controls['seatsNumber'].touched && 
+    !form.controls['seatsNumber'].hasError('required') &&   
+    form.controls['seatsNumber'].invalid
+    ">
+     Only numbers are allowed!
+    </label>
+  
+    <div class="col" style="margin-top: 20px;">
+      <span class="sidetitle" style="padding-right: 20px;">Price:</span>
+        <mat-form-field style="width: 50px !important;"  appearance="outline">
+          <input matInput  style="width: 100% !important;" id="price" formControlName="price"
+          [ngClass]="(form.controls['price'].invalid && form.controls['price'].touched) ? 'is-invalid' : ''">
+      </mat-form-field> 
+    </div>
+  
+    <label class="col" style="color: red;" 
+    *ngIf="form.controls['price'].touched && 
+    !form.controls['price'].hasError('required') &&
+    form.controls['price'].invalid
+    ">
+     Only numbers are allowed!
+    </label>
+
+    <div  class="col" style="margin-top: 20px;">
+      <mat-card style="height: 70px !important">
+        <mat-form-field style="width: 100% !important;">
+          <mat-label>Event date</mat-label>
+          <input matInput [matDatepicker]="picker" 
+           [min]="startingMinDate" formControlName="eventDate"
+           [ngClass]="(form.controls['eventDate'].invalid && form.controls['eventDate'].touched) ? 'is-invalid' : ''">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker >
+        </mat-form-field>
+      </mat-card>
+    </div>
+
+
+</form>
+
+
+
+  <div class="col">
+    
+    <button mat-raised-button   [disabled]="form.invalid" (click)="editManifestation()">Edit</button>
+  </div>
+
+    
+</div>

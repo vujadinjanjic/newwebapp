@@ -1,0 +1,142 @@
+<form [formGroup]="formGroup">
+  <div class="form-group" style="margin-top: 50px">
+    <label for="name">Name:</label>
+
+    <input id="name" formControlName="name" type="text" class="form-control" />
+
+    <label for="surname" style="margin-top: 25px">Last name:</label>
+
+    <input
+      id="surname"
+      formControlName="surname"
+      type="text"
+      class="form-control"
+    />
+
+    <label for="username" style="margin-top: 25px">Username:</label>
+
+    <input
+      id="username"
+      formControlName="username"
+      type="text"
+      class="form-control"
+    />
+
+    <label for="dateofbirth" style="margin-top: 25px">Date of birth:</label>
+
+    <input
+      id="dateofbirth"
+      formControlName="dateOfBirth"
+      type="date"
+      class="form-control"
+    />
+
+    <div>
+      <label for="gender" style="margin-top: 25px">Gender:</label>
+
+      <input type="radio" value="Male" formControlName="gender" style="margin-left: 20px" />
+      <span>Male</span>
+
+      <input type="radio" value="Female" formControlName="gender" style="margin-left: 20px" />
+      <span>Female</span>
+    </div>
+
+    <label
+      for="password"
+      style="margin-top: 25px"
+      [ngClass]="
+        formGroup.controls['password'].invalid &&
+        formGroup.controls['password'].touched
+          ? 'text-danger'
+          : ''
+      "
+      >Password:</label
+    >
+
+    <input
+      id="password"
+      formControlName="password"
+      type="password"
+      class="form-control"
+      [ngClass]="
+        formGroup.controls['password'].invalid &&
+        formGroup.controls['password'].touched
+          ? 'is-invalid'
+          : ''
+      "
+    />
+
+    <div
+      class="col"
+      style="color: green"
+      *ngIf="
+        formGroup.controls['password'].touched &&
+        !formGroup.controls['password'].hasError('required') &&
+        !formGroup.controls['password'].hasError('minlength') &&
+        !formGroup.controls['password'].hasError('hasNumber') &&
+        !formGroup.controls['password'].hasError('hasCapitalCase') &&
+        !formGroup.controls['password'].hasError('hasSmallCase')
+      "
+    >
+      Looks good!
+    </div>
+    <label
+      class="col"
+      style="color: red"
+      *ngIf="
+        (formGroup.controls['password'].touched &&
+          formGroup.controls['password'].hasError('required')) ||
+        formGroup.controls['password'].hasError('minlength')
+      "
+    >
+      Must be at least 8 characters!
+    </label>
+
+    <label
+      class="col"
+      style="color: red"
+      *ngIf="
+        (formGroup.controls['password'].touched &&
+          formGroup.controls['password'].hasError('required')) ||
+        formGroup.controls['password'].hasError('hasNumber')
+      "
+    >
+      Must contain at least 1 number!
+    </label>
+
+    <label
+      class="col"
+      style="color: red"
+      *ngIf="
+        (formGroup.controls['password'].touched &&
+          formGroup.controls['password'].hasError('required')) ||
+        formGroup.controls['password'].hasError('hasCapitalCase')
+      "
+    >
+      Must contain at least 1 in Capital Case!
+    </label>
+
+    <label
+      class="col"
+      style="color: red"
+      *ngIf="
+        (formGroup.controls['password'].touched &&
+          formGroup.controls['password'].hasError('required')) ||
+        formGroup.controls['password'].hasError('hasSmallCase')
+      "
+    >
+      Must contain at least 1 Letter in Small Case!
+    </label>
+
+    <div style="width: 100%; margin-top: 40px">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="makeSeller()"
+        style="text-align: center"
+      >
+        Make seller
+      </button>
+    </div>
+  </div>
+</form>

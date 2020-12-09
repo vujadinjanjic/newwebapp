@@ -1,0 +1,91 @@
+<div class="container">
+  <form [formGroup]="formGroup">
+    <mat-card class="card" style="margin-top: 50px; width: 800px">
+      <div class="form-group" style="margin-top: 20px">
+        <label for="name">Name:</label>
+
+        <input
+          id="name"
+          formControlName="name"
+          type="text"
+          class="form-control"
+        />
+
+        <label for="surname" style="margin-top: 25px">Last name:</label>
+
+        <input
+          id="surname"
+          formControlName="surname"
+          type="text"
+          class="form-control"
+        />
+
+        <label for="username" style="margin-top: 25px">Username:</label>
+
+        <input
+          id="username"
+          formControlName="username"
+          type="text"
+          class="form-control"
+        />
+
+        <label for="dateOfBirth" style="margin-top: 25px">Date of birth:</label>
+
+        <input
+          id="dateOfBirth"
+          formControlName="dateOfBirth"
+          type="date"
+          class="form-control"
+        />
+
+        <div>
+          <label for="gender" style="margin-top: 25px">Gender:</label>
+
+          <input
+            type="radio"
+            value="Male"
+            formControlName="gender"
+            style="margin-left: 20px"
+          />
+          <span>Male</span>
+
+          <input
+            type="radio"
+            value="Female"
+            formControlName="gender"
+            style="margin-left: 20px"
+          />
+          <span>Female</span>
+        </div>
+
+        <label
+          *ngIf="authService.isCustomer() && authService.isSeller()"
+          for="type"
+          style="margin-top: 25px"
+          >Type of user:</label
+        >
+
+        <input
+          id="type"
+          formControlName="type"
+          type="type" 
+          class="form-control"
+          disabled
+          
+        />
+        
+
+        <div style="width: 100%; margin-top: 40px">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="updateProfile()"
+            style="text-align: center"
+          >
+            Update profile
+          </button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>

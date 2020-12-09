@@ -1,0 +1,50 @@
+<div>
+  <div style="margin-top: 10px; text-align: center">
+    <span class="sidetitle"><b>Reservation:</b></span>
+  </div>
+  <b>Click "Reserve" to reserve this ticket.</b>
+  <hr />
+
+  <div style="margin-top: 10px">
+    <span class="sidetitle" style="padding-right: 40px"
+      >Ticket identificator:</span
+    >
+    <span class="sidetitle">{{ data.ticket.ticketIdentificator }}</span>
+  </div>
+  <div style="margin-top: 10px">
+    <span class="sidetitle" style="padding-right: 40px">Manifestation:</span>
+    <span class="sidetitle">{{ data.ticket.manifestation.name }}</span>
+  </div>
+
+  <div style="margin-top: 10px">
+    <span class="sidetitle" style="padding-right: 40px">Price:</span>
+    <span class="sidetitle">{{ data.ticket.price }}</span>
+  </div>
+
+  <div style="margin-top: 10px">
+    <span class="sidetitle" style="padding-right: 40px">Event date</span>
+    <span class="sidetitle">{{ data.ticket.eventDate | date: 'medium' }}</span>
+  </div>
+
+  <div style="margin-top: 10px">
+    <span class="sidetitle" style="padding-right: 40px">Price of ticket:</span>
+    <span class="sidetitle">{{ data.ticket.price }}</span>
+  </div>
+
+  <div style="margin-top: 10px">
+    <span class="sidetitle" style="padding-right: 40px">Status:</span>
+    <span class="sidetitle">{{ data.ticket.status }}</span>
+  </div>
+
+  <div style="padding-top: 55px; display: inline-block; margin-left: 65px">
+    <button
+      mat-raised-button
+      color="primary"
+      style="margin-right: 20px"
+      (click)="Reserve()"
+      cdkFocusInitial
+    >
+      Reserve
+    </button>
+  </div>
+</div>

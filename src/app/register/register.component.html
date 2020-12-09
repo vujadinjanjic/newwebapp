@@ -1,0 +1,93 @@
+<form #registerForm="ngForm" (ngSubmit)="register()">
+  <h2 class="text-center text-primary">Sign Up</h2>
+  <hr />
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      required
+      name="username"
+      [(ngModel)]="model.username"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Username"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      required
+      name="name"
+      [(ngModel)]="model.name"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Name"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      required
+      name="Surname"
+      [(ngModel)]="model.surname"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Surname"
+    />
+  </div>
+
+  <div class="form-group">
+    <input
+      type="date"
+      class="form-control"
+      required
+      name="dateOfBirth"
+      [(ngModel)]="model.dateOfBirth"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Date of Birth"
+    />
+  </div>
+
+  <div>
+    <label for="gender" style="margin-top: 25px">Gender:</label>
+
+    <input
+      type="radio"
+      [(ngModel)]="model.gender"
+      [ngModelOptions]="{ standalone: true }"
+      value="Male"
+      style="margin-left: 20px"
+    />
+    <span>Male</span>
+
+    <input
+      type="radio"
+      value="Female"
+      [(ngModel)]="model.gender"
+      [ngModelOptions]="{ standalone: true }"
+      style="margin-left: 20px"
+    />
+    <span>Female</span>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="password"
+      class="form-control"
+      required
+      name="password"
+      [(ngModel)]="model.password"
+      [ngModelOptions]="{ standalone: true }"
+      placeholder="Password"
+    />
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit">Register</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>
